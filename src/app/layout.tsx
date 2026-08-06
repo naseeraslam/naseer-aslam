@@ -14,12 +14,14 @@ const lato = Lato({
   weight: ['100', '300', '400', '700', '900'],
   variable: '--font-sans',
   display: 'swap',
+  preload: true,
 })
 
 const jetbrains = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
   display: 'swap',
+  preload: true,
 })
 
 const baseUrl = 'https://naseeraslam.netlify.app'
@@ -190,10 +192,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${lato.variable} ${jetbrains.variable} scroll-smooth`}>
       <head>
-        {/* Google Tag Manager */}
+        {/* Preconnect to external domains */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+        {/* Google Tag Manager with lazyOnload strategy to preserve 95+ Lighthouse Performance */}
         <Script
           id="gtm-script"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
