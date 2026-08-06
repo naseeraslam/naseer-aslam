@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { ArrowRight, Download, ShieldCheck, ShoppingBag, MapPin } from 'lucide-react'
 import { portfolioData } from '@/data/portfolioData'
 
@@ -114,21 +113,27 @@ export default function HeroSection() {
               {/* Card Container */}
               <div className="relative rounded-3xl bg-slate-900/80 border border-slate-800 p-4 backdrop-blur-2xl shadow-2xl space-y-4">
                 
-                {/* Next.js Optimized Image Frame */}
+                {/* Native <img> with fetchpriority=high for fastest possible LCP */}
                 <div className="relative rounded-2xl overflow-hidden aspect-4/5 border border-slate-700/50 group">
-                  <Image
-                    src={portfolioData.personal.headshot}
-                    alt={portfolioData.personal.name}
-                    width={320}
-                    height={400}
-                    priority
-                    sizes="(max-width: 768px) 240px, 320px"
-                    quality={75}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 768px)"
+                      srcSet="/headshot-mobile.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="/headshot.webp"
+                      alt={portfolioData.personal.name}
+                      width={320}
+                      height={400}
+                      fetchPriority="high"
+                      decoding="sync"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </picture>
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
                   
-                  {/* Floating Overlay Badge: Enterprise Retail */}
+                  {/* Floating Overlay Badge */}
                   <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-slate-900/90 border border-slate-700/60 backdrop-blur-md flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
                       <div className="p-2 rounded-lg bg-orange-500/20 text-orange-400">

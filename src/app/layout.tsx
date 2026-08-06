@@ -3,9 +3,6 @@ import { Lato, JetBrains_Mono } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import LenisProvider from '@/components/common/LenisProvider'
-import CustomCursor from '@/components/common/CustomCursor'
-import ReadingProgressBar from '@/components/common/ReadingProgressBar'
-import ThreeBackground from '@/components/common/ThreeBackground'
 import KeyboardShortcuts from '@/components/common/KeyboardShortcuts'
 import { portfolioData } from '@/data/portfolioData'
 
@@ -192,6 +189,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${lato.variable} ${jetbrains.variable} scroll-smooth`}>
       <head>
+        {/* Preload LCP image for instant paint */}
+        <link rel="preload" href="/headshot.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/headshot-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)" />
+
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
@@ -236,9 +237,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {/* End Google Tag Manager (noscript) */}
 
         <LenisProvider>
-          <ReadingProgressBar />
-          <CustomCursor />
-          <ThreeBackground />
           <KeyboardShortcuts />
           {children}
         </LenisProvider>
