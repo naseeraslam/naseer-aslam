@@ -12,37 +12,36 @@ export default function CustomCursor() {
     // Only enable on desktop fine pointer devices
     if (window.matchMedia('(pointer: coarse)').matches) return
 
+    let rafId: number
+
     const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY })
-      if (!isVisible) setIsVisible(true)
+      // Use requestAnimationFrame throttling for sub-1ms mouse tracking
+      rafId = requestAnimationFrame(() => {
+        setPosition({ x: e.clientX, y: e.clientY })
+        if (!isVisible) setIsVisible(true)
+      })
+
+      // Fast event delegation instead of scanning DOM nodes
+      const target = e.target as HTMLElement | null
+      if (target && target.closest('a, button, [role="button"], input, textarea, .interactive-card')) {
+        setIsHovered(true)
+      } else {
+        setIsHovered(false)
+      }
     }
 
     const handleMouseLeave = () => setIsVisible(false)
     const handleMouseEnter = () => setIsVisible(true)
 
-    const handleElementHover = () => {
-      const interactiveElements = document.querySelectorAll('a, button, [role="button"], input, textarea, .interactive-card')
-      
-      interactiveElements.forEach((el) => {
-        el.addEventListener('mouseenter', () => setIsHovered(true))
-        el.addEventListener('mouseleave', () => setIsHovered(false))
-      })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
     document.addEventListener('mouseleave', handleMouseLeave)
     document.addEventListener('mouseenter', handleMouseEnter)
-    handleElementHover()
-
-    // Observe DOM mutations to attach listeners to newly rendered items
-    const observer = new MutationObserver(handleElementHover)
-    observer.observe(document.body, { childList: true, subtree: true })
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseleave', handleMouseLeave)
       document.removeEventListener('mouseenter', handleMouseEnter)
-      observer.disconnect()
+      if (rafId) cancelAnimationFrame(rafId)
     }
   }, [isVisible])
 

@@ -33,9 +33,9 @@ export default function HeroSection() {
             
             {/* Live Status Badge */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
               className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/90 border border-orange-500/30 backdrop-blur-xl shadow-lg"
             >
               <span className="relative flex h-2.5 w-2.5">
@@ -50,9 +50,9 @@ export default function HeroSection() {
             {/* Title & Name */}
             <div className="space-y-3">
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                transition={{ duration: 0.4, delay: 0.05 }}
                 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-100 leading-[1.08]"
               >
                 Muhammad<br />
@@ -62,9 +62,9 @@ export default function HeroSection() {
               </motion.h1>
 
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
                 className="text-lg sm:text-xl font-semibold text-orange-400 font-mono flex items-center gap-2"
               >
                 <span>Senior Software Engineer</span>
@@ -75,9 +75,9 @@ export default function HeroSection() {
 
             {/* Bio Narrative */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
               className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl"
             >
               {portfolioData.personal.bio}
@@ -85,9 +85,9 @@ export default function HeroSection() {
 
             {/* Adobe Certification Badges */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
               className="flex flex-wrap gap-2.5 pt-1"
             >
               {portfolioData.certifications.map((cert) => (
@@ -103,9 +103,9 @@ export default function HeroSection() {
 
             {/* Call To Actions */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.4, delay: 0.25 }}
               className="flex flex-wrap items-center gap-4 pt-4"
             >
               <button
@@ -137,9 +137,9 @@ export default function HeroSection() {
 
           {/* Right Profile & Tech Card Visual Column */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="lg:col-span-5 flex justify-center"
           >
             <div className="relative w-full max-w-sm">
@@ -155,10 +155,11 @@ export default function HeroSection() {
                   <Image
                     src={portfolioData.personal.headshot}
                     alt={portfolioData.personal.name}
-                    width={400}
-                    height={500}
+                    width={320}
+                    height={400}
                     priority
-                    quality={90}
+                    sizes="(max-width: 768px) 240px, 320px"
+                    quality={80}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
