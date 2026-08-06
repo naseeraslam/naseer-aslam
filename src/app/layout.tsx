@@ -26,28 +26,20 @@ const baseUrl = 'https://naseeraslam.netlify.app'
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Muhammad Naseer Aslam — Senior Magento Developer & Adobe Commerce Certified Expert',
+    default: 'Muhammad Naseer Aslam | Senior Magento Developer',
     template: '%s | Muhammad Naseer Aslam',
   },
-  description: 'Official portfolio of Muhammad Naseer Aslam, Adobe Commerce Certified Expert & Senior Software Engineer. 5+ years architecting high-scale enterprise Magento 2 storefronts (Box.co.uk, LaptopOutlet.co.uk, OppoStore.co.uk). Open for Remote, Relocation & Visa Sponsorship.',
+  description: 'Adobe Commerce Certified Expert & Senior Magento Developer. 5+ years architecting high-scale enterprise platforms. Open to Remote, Relocation & Visa.',
   keywords: [
     'Naseer',
     'Naseer Aslam',
     'Muhammad Naseer Aslam',
     'Naseer Aslam Magento',
-    'Naseer Aslam Portfolio',
-    'Naseer Aslam Adobe Commerce',
-    'Muhammad Naseer Aslam Engineer',
     'Senior Magento Developer',
     'Adobe Commerce Certified Expert',
-    'Magento 2 Developer Pakistan',
-    'Hyva Themes Specialist',
-    'GraphQL Magento Engineer',
-    'Magento 2 B2B Developer',
-    'Adobe Certified Professional',
-    'Senior Software Engineer Lahore',
-    'Magento Developer Relocation',
-    'Magento Visa Sponsorship'
+    'Magento 2 Developer',
+    'Hyva Themes Developer',
+    'GraphQL Magento Engineer'
   ],
   authors: [{ name: 'Muhammad Naseer Aslam', url: baseUrl }],
   creator: 'Muhammad Naseer Aslam',
@@ -59,24 +51,26 @@ export const metadata: Metadata = {
     type: 'profile',
     locale: 'en_US',
     url: baseUrl,
-    title: 'Muhammad Naseer Aslam — Senior Magento Developer & Adobe Commerce Certified Expert',
-    description: 'Adobe Commerce Certified Expert architecting high-scale enterprise e-commerce platforms. Box.co.uk, LaptopOutlet.co.uk & OppoStore.co.uk engineering leader.',
-    siteName: 'Muhammad Naseer Aslam Portfolio',
+    title: 'Muhammad Naseer Aslam | Senior Magento Developer',
+    description: 'Adobe Commerce Certified Expert & Senior Magento Developer. 5+ years architecting high-scale enterprise platforms. Open to Remote, Relocation & Visa.',
+    siteName: 'Muhammad Naseer Aslam',
     images: [
       {
         url: `${baseUrl}/headshot-on-white.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Muhammad Naseer Aslam — Adobe Commerce Certified Expert & Senior Software Engineer',
+        alt: 'Muhammad Naseer Aslam — Adobe Commerce Certified Expert',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Muhammad Naseer Aslam — Adobe Commerce Certified Expert',
-    description: 'Senior Software Engineer architecting enterprise Magento 2 platforms & GraphQL APIs.',
+    title: 'Muhammad Naseer Aslam | Senior Magento Developer',
+    description: 'Adobe Commerce Certified Expert & Senior Magento Developer. 5+ years architecting high-scale enterprise platforms.',
     images: [`${baseUrl}/headshot-on-white.jpg`],
-    creator: '@naseeraslam',
+  },
+  verification: {
+    google: 'google-site-verification-code-placeholder',
   },
   robots: {
     index: true,
@@ -89,7 +83,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  category: 'technology',
 }
 
 export default function RootLayout({
@@ -186,7 +179,7 @@ export default function RootLayout({
     '@type': 'WebSite',
     '@id': `${baseUrl}/#website`,
     url: baseUrl,
-    name: 'Muhammad Naseer Aslam — Official Portfolio',
+    name: 'Muhammad Naseer Aslam',
     description: 'Senior Software Engineer & Adobe Commerce Certified Expert Portfolio',
     publisher: {
       '@id': `${baseUrl}/#person`,
