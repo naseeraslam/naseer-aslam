@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     images: [`${baseUrl}/headshot-on-white.jpg`],
   },
   verification: {
-    google: 'google-site-verification-code-placeholder',
+    google: 'googleefce79dd7f1e3b54',
   },
   robots: {
     index: true,
