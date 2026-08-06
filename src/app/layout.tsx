@@ -1,0 +1,223 @@
+import type { Metadata } from 'next'
+import { Lato, JetBrains_Mono } from 'next/font/google'
+import './globals.css'
+import LenisProvider from '@/components/common/LenisProvider'
+import CustomCursor from '@/components/common/CustomCursor'
+import ReadingProgressBar from '@/components/common/ReadingProgressBar'
+import ThreeBackground from '@/components/common/ThreeBackground'
+import KeyboardShortcuts from '@/components/common/KeyboardShortcuts'
+import { portfolioData } from '@/data/portfolioData'
+
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '700', '900'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+})
+
+const baseUrl = 'https://naseeraslam.netlify.app'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: 'Muhammad Naseer Aslam — Senior Magento Developer & Adobe Commerce Certified Expert',
+    template: '%s | Muhammad Naseer Aslam',
+  },
+  description: 'Official portfolio of Muhammad Naseer Aslam, Adobe Commerce Certified Expert & Senior Software Engineer. 5+ years architecting high-scale enterprise Magento 2 storefronts (Box.co.uk, LaptopOutlet.co.uk, OppoStore.co.uk). Open for Remote, Relocation & Visa Sponsorship.',
+  keywords: [
+    'Naseer',
+    'Naseer Aslam',
+    'Muhammad Naseer Aslam',
+    'Naseer Aslam Magento',
+    'Naseer Aslam Portfolio',
+    'Naseer Aslam Adobe Commerce',
+    'Muhammad Naseer Aslam Engineer',
+    'Senior Magento Developer',
+    'Adobe Commerce Certified Expert',
+    'Magento 2 Developer Pakistan',
+    'Hyva Themes Specialist',
+    'GraphQL Magento Engineer',
+    'Magento 2 B2B Developer',
+    'Adobe Certified Professional',
+    'Senior Software Engineer Lahore',
+    'Magento Developer Relocation',
+    'Magento Visa Sponsorship'
+  ],
+  authors: [{ name: 'Muhammad Naseer Aslam', url: baseUrl }],
+  creator: 'Muhammad Naseer Aslam',
+  publisher: 'Muhammad Naseer Aslam',
+  alternates: {
+    canonical: baseUrl,
+  },
+  openGraph: {
+    type: 'profile',
+    locale: 'en_US',
+    url: baseUrl,
+    title: 'Muhammad Naseer Aslam — Senior Magento Developer & Adobe Commerce Certified Expert',
+    description: 'Adobe Commerce Certified Expert architecting high-scale enterprise e-commerce platforms. Box.co.uk, LaptopOutlet.co.uk & OppoStore.co.uk engineering leader.',
+    siteName: 'Muhammad Naseer Aslam Portfolio',
+    images: [
+      {
+        url: `${baseUrl}/headshot-on-white.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Muhammad Naseer Aslam — Adobe Commerce Certified Expert & Senior Software Engineer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Muhammad Naseer Aslam — Adobe Commerce Certified Expert',
+    description: 'Senior Software Engineer architecting enterprise Magento 2 platforms & GraphQL APIs.',
+    images: [`${baseUrl}/headshot-on-white.jpg`],
+    creator: '@naseeraslam',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  category: 'technology',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const jsonLdPerson = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': `${baseUrl}/#person`,
+    name: 'Muhammad Naseer Aslam',
+    alternateName: ['Naseer Aslam', 'Naseer', 'M. Naseer Aslam'],
+    givenName: 'Muhammad Naseer',
+    familyName: 'Aslam',
+    jobTitle: 'Senior Software Engineer & Adobe Commerce Certified Expert',
+    description: 'Adobe Commerce Certified Expert with 5+ years of experience architecting, upgrading, and scaling Magento 2 e-commerce platforms for high-volume enterprise retailers.',
+    url: baseUrl,
+    image: `${baseUrl}/headshot-on-white.jpg`,
+    email: portfolioData.personal.contact.email,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Lahore',
+      addressRegion: 'Punjab',
+      addressCountry: 'Pakistan',
+    },
+    alumniOf: {
+      '@type': 'EducationalOrganization',
+      name: 'Punjab University College of Information Technology (PUCIT)',
+      url: 'https://pucit.edu.pk/',
+    },
+    worksFor: {
+      '@type': 'Organization',
+      name: 'FiveTech',
+    },
+    sameAs: [
+      portfolioData.personal.contact.linkedin,
+      portfolioData.personal.contact.github,
+      portfolioData.certifications[0].verificationUrl,
+      portfolioData.certifications[1].verificationUrl,
+    ],
+    knowsAbout: [
+      'Magento 2',
+      'Adobe Commerce Enterprise',
+      'PHP 8',
+      'GraphQL APIs',
+      'REST APIs',
+      'Hyvä Themes',
+      'B2B E-Commerce Architecture',
+      'CI/CD Automation',
+      'Docker & AWS Deployment',
+      'Stripe Integration',
+      'Log Rotation & Linux DevOps'
+    ],
+    hasCredential: [
+      {
+        '@type': 'EducationalOccupationalCredential',
+        name: 'Adobe Commerce Certified Expert',
+        credentialCategory: 'Professional Certification',
+        url: portfolioData.certifications[0].verificationUrl,
+        recognizedBy: {
+          '@type': 'Organization',
+          name: 'Adobe',
+          url: 'https://www.adobe.com/',
+        },
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        name: 'Adobe Certified Professional — Adobe Commerce Developer',
+        credentialCategory: 'Professional Certification',
+        url: portfolioData.certifications[1].verificationUrl,
+        recognizedBy: {
+          '@type': 'Organization',
+          name: 'Adobe',
+          url: 'https://www.adobe.com/',
+        },
+      },
+    ],
+  }
+
+  const jsonLdProfilePage = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': `${baseUrl}/#profilepage`,
+    url: baseUrl,
+    name: 'Muhammad Naseer Aslam — Official Personal Portfolio & Profile',
+    mainEntity: {
+      '@id': `${baseUrl}/#person`,
+    },
+  }
+
+  const jsonLdWebSite = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${baseUrl}/#website`,
+    url: baseUrl,
+    name: 'Muhammad Naseer Aslam — Official Portfolio',
+    description: 'Senior Software Engineer & Adobe Commerce Certified Expert Portfolio',
+    publisher: {
+      '@id': `${baseUrl}/#person`,
+    },
+  }
+
+  return (
+    <html lang="en" className={`${lato.variable} ${jetbrains.variable} scroll-smooth`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdProfilePage) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
+        />
+      </head>
+      <body className="bg-[#060911] text-slate-100 antialiased selection:bg-orange-500 selection:text-white">
+        <LenisProvider>
+          <ReadingProgressBar />
+          <CustomCursor />
+          <ThreeBackground />
+          <KeyboardShortcuts />
+          {children}
+        </LenisProvider>
+      </body>
+    </html>
+  )
+}
