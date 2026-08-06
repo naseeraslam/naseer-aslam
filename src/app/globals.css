@@ -41,6 +41,12 @@
   }
 }
 
+/* Offscreen section rendering optimization for 95+ Lighthouse score */
+#experience, #projects, #tech, #certifications, #process, #contact {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+
 /* Glassmorphism utility classes */
 .glass-panel {
   background: rgba(15, 23, 42, 0.65);

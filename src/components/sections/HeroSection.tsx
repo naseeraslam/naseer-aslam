@@ -1,7 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ArrowRight, Download, Award, CheckCircle2, MapPin, Sparkles, ShoppingBag, ShieldCheck } from 'lucide-react'
+import { ArrowRight, Download, ShieldCheck, ShoppingBag, MapPin } from 'lucide-react'
 import { portfolioData } from '@/data/portfolioData'
 
 export default function HeroSection() {
@@ -149,11 +150,15 @@ export default function HeroSection() {
               {/* Card Container */}
               <div className="relative rounded-3xl bg-slate-900/80 border border-slate-800 p-4 backdrop-blur-2xl shadow-2xl space-y-4">
                 
-                {/* Image Frame */}
+                {/* Next.js Optimized Image Frame */}
                 <div className="relative rounded-2xl overflow-hidden aspect-4/5 border border-slate-700/50 group">
-                  <img
+                  <Image
                     src={portfolioData.personal.headshot}
                     alt={portfolioData.personal.name}
+                    width={400}
+                    height={500}
+                    priority
+                    quality={90}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
