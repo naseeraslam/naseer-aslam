@@ -55,7 +55,7 @@ export const portfolioData = {
     bio: 'Adobe Commerce Certified Expert with 5+ years of engineering high-performance Magento 2 platforms for global enterprise retailers. Proven leader in GraphQL/REST API design, Hyvä storefront acceleration, custom module development, and CI/CD automation.',
     location: 'Lahore, Pakistan',
     availability: 'Open to Remote, Relocation & Visa Sponsorship',
-    headshot: '/headshot-on-white.jpg',
+    headshot: '/headshot.webp',
     contact: {
       email: 'naseeraslam456@gmail.com',
       linkedin: 'https://www.linkedin.com/in/muhammad-naseer-aslam-magento-developer/',

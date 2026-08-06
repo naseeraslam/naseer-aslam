@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { ArrowRight, Download, ShieldCheck, ShoppingBag, MapPin } from 'lucide-react'
 import { portfolioData } from '@/data/portfolioData'
 
@@ -32,12 +31,7 @@ export default function HeroSection() {
           <div className="lg:col-span-7 space-y-6">
             
             {/* Live Status Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/90 border border-orange-500/30 backdrop-blur-xl shadow-lg"
-            >
+            <div className="hero-fade hero-fade-1 inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/90 border border-orange-500/30 backdrop-blur-xl shadow-lg">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
@@ -45,51 +39,31 @@ export default function HeroSection() {
               <span className="text-xs font-semibold text-slate-200">
                 Open to Remote · Relocation · Visa Sponsorship
               </span>
-            </motion.div>
+            </div>
 
             {/* Title & Name */}
             <div className="space-y-3">
-              <motion.h1
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.05 }}
-                className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-100 leading-[1.08]"
-              >
+              <h1 className="hero-fade hero-fade-2 text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-100 leading-[1.08]">
                 Muhammad<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-400">
                   Naseer Aslam
                 </span>
-              </motion.h1>
+              </h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-                className="text-lg sm:text-xl font-semibold text-orange-400 font-mono flex items-center gap-2"
-              >
+              <p className="hero-fade hero-fade-3 text-lg sm:text-xl font-semibold text-orange-400 font-mono flex items-center gap-2">
                 <span>Senior Software Engineer</span>
                 <span className="text-slate-600">•</span>
                 <span>Adobe Commerce Certified Expert</span>
-              </motion.p>
+              </p>
             </div>
 
             {/* Bio Narrative */}
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.15 }}
-              className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl"
-            >
+            <p className="hero-fade hero-fade-4 text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl">
               {portfolioData.personal.bio}
-            </motion.p>
+            </p>
 
             {/* Adobe Certification Badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="flex flex-wrap gap-2.5 pt-1"
-            >
+            <div className="hero-fade hero-fade-5 flex flex-wrap gap-2.5 pt-1">
               {portfolioData.certifications.map((cert) => (
                 <div
                   key={cert.id}
@@ -99,15 +73,10 @@ export default function HeroSection() {
                   <span>{cert.title}</span>
                 </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Call To Actions */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.25 }}
-              className="flex flex-wrap items-center gap-4 pt-4"
-            >
+            <div className="hero-fade hero-fade-6 flex flex-wrap items-center gap-4 pt-4">
               <button
                 onClick={handleScrollToProjects}
                 className="flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 font-extrabold text-sm shadow-[0_0_30px_rgba(249,115,22,0.4)] hover:shadow-[0_0_40px_rgba(249,115,22,0.6)] hover:scale-105 transition-all cursor-pointer"
@@ -132,16 +101,11 @@ export default function HeroSection() {
                 <Download className="w-4 h-4 text-orange-400" />
                 <span>Download Resume</span>
               </a>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right Profile & Tech Card Visual Column */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-5 flex justify-center"
-          >
+          <div className="hero-fade hero-fade-3 lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-sm">
               
               {/* Outer Glow ring */}
@@ -159,7 +123,7 @@ export default function HeroSection() {
                     height={400}
                     priority
                     sizes="(max-width: 768px) 240px, 320px"
-                    quality={80}
+                    quality={75}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
@@ -194,7 +158,7 @@ export default function HeroSection() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>

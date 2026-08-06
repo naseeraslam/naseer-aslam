@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Command, Menu, X, ArrowUpRight, Award, Briefcase, User, Code2, FolderGit2, Mail } from 'lucide-react'
 import { portfolioData } from '@/data/portfolioData'
 
@@ -15,26 +14,32 @@ export default function Navbar({ onOpenCommandPalette }: NavbarProps) {
   const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
+    let ticking = false
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 20)
 
-      const sections = ['hero', 'about', 'experience', 'projects', 'tech', 'certifications', 'contact']
-      const scrollPosition = window.scrollY + 200
+        const sections = ['hero', 'about', 'experience', 'projects', 'tech', 'certifications', 'contact']
+        const scrollPosition = window.scrollY + 200
 
-      for (const section of sections) {
-        const el = document.getElementById(section)
-        if (el) {
-          const top = el.offsetTop
-          const height = el.offsetHeight
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section)
-            break
+        for (const section of sections) {
+          const el = document.getElementById(section)
+          if (el) {
+            const top = el.offsetTop
+            const height = el.offsetHeight
+            if (scrollPosition >= top && scrollPosition < top + height) {
+              setActiveSection(section)
+              break
+            }
           }
         }
-      }
+        ticking = false
+      })
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -97,17 +102,10 @@ export default function Navbar({ onOpenCommandPalette }: NavbarProps) {
                 }}
                 className={`relative px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
                   isActive
-                    ? 'text-white font-semibold'
+                    ? 'text-white font-semibold bg-gradient-to-r from-orange-500/20 to-amber-500/20 border border-orange-500/40'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
                 }`}
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeNavBg"
-                    className="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500/20 to-amber-500/20 border border-orange-500/40"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
                 <span className="relative z-10">{link.label}</span>
               </a>
             )
@@ -148,45 +146,38 @@ export default function Navbar({ onOpenCommandPalette }: NavbarProps) {
       </div>
 
       {/* Mobile Drawer Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden mt-3 p-4 rounded-2xl bg-slate-900/95 backdrop-blur-2xl border border-slate-800 shadow-2xl pointer-events-auto space-y-2"
-          >
-            {navLinks.map((link) => {
-              const Icon = link.icon
-              return (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handleNavClick(link.href)
-                  }}
-                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/80 text-sm font-medium text-slate-200 hover:text-orange-400 transition-colors"
-                >
-                  <Icon className="w-4 h-4 text-orange-400" />
-                  <span>{link.label}</span>
-                </a>
-              )
-            })}
-            <div className="pt-2 border-t border-slate-800 flex gap-2">
+      {mobileMenuOpen && (
+        <div className="md:hidden mt-3 p-4 rounded-2xl bg-slate-900/95 backdrop-blur-2xl border border-slate-800 shadow-2xl pointer-events-auto space-y-2 animate-fade-in">
+          {navLinks.map((link) => {
+            const Icon = link.icon
+            return (
               <a
-                href={portfolioData.personal.contact.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 font-bold text-center text-xs flex items-center justify-center gap-1.5"
+                key={link.id}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault()
+                  handleNavClick(link.href)
+                }}
+                className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/80 text-sm font-medium text-slate-200 hover:text-orange-400 transition-colors"
               >
-                <span>LinkedIn Profile</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <Icon className="w-4 h-4 text-orange-400" />
+                <span>{link.label}</span>
               </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            )
+          })}
+          <div className="pt-2 border-t border-slate-800 flex gap-2">
+            <a
+              href={portfolioData.personal.contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 font-bold text-center text-xs flex items-center justify-center gap-1.5"
+            >
+              <span>LinkedIn Profile</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   )
 }

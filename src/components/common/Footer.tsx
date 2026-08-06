@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Github, Linkedin, Mail, MapPin, Download, ArrowUp } from 'lucide-react'
 import { portfolioData } from '@/data/portfolioData'
 
