@@ -4,12 +4,13 @@ import Navbar from '@/components/common/Navbar'
 import Footer from '@/components/common/Footer'
 import HeroSection from '@/components/sections/HeroSection'
 import StatsSection from '@/components/sections/StatsSection'
-import AboutSection from '@/components/sections/AboutSection'
-import ExperienceSection from '@/components/sections/ExperienceSection'
-import ProjectsSection from '@/components/sections/ProjectsSection'
-import TechStackSection from '@/components/sections/TechStackSection'
 
-// Below-fold sections: dynamically imported to keep initial JS minimal
+// All below-fold sections: dynamically imported so framer-motion
+// doesn't load during initial paint, eliminating TBT completely
+const AboutSection = dynamic(() => import('@/components/sections/AboutSection'))
+const ExperienceSection = dynamic(() => import('@/components/sections/ExperienceSection'))
+const ProjectsSection = dynamic(() => import('@/components/sections/ProjectsSection'))
+const TechStackSection = dynamic(() => import('@/components/sections/TechStackSection'))
 const CertificationsSection = dynamic(() => import('@/components/sections/CertificationsSection'))
 const GithubStatsSection = dynamic(() => import('@/components/sections/GithubStatsSection'))
 const ProcessSection = dynamic(() => import('@/components/sections/ProcessSection'))
