@@ -3,15 +3,10 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-    ],
+    unoptimized: true,
   },
   experimental: {
-    // Allows optimization of icons and external packages
+    optimizePackageImports: ['lucide-react', 'framer-motion', 'lenis'],
   },
 }
 
